@@ -1,5 +1,5 @@
 const e = require("express");
-const UserModel = require("../models/UserModel");
+const UserModel = require("../models/userModel");
 
 // lấy danh sách người dùng trong database
 const getAllUser = async (page, size) => {
