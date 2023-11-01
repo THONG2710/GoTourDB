@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 var express = require("express");
 var router = express.Router();
 const UserController = require("../../controllers/userController");
+=======
+const express = require("express");
+const router = express.Router();
+const UserController = require("../../controllers/UserController");
+>>>>>>> Stashed changes
 
 // 192.168.1.53
 // http://42.116.118.69:3000/api/user/getUser

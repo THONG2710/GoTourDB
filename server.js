@@ -9,8 +9,6 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 
-
-
 // dành cho api
 const userApi = require("./src/routes/api/userApi");
 // dành cho cpnel
@@ -18,10 +16,9 @@ const webApi = require("./src/routes/web/webApi");
 var app = express();
 
 // view engine setup
-app.set("views", path.join('./src', "views"));
+app.set("views", path.join("./src", "views"));
 app.set("view engine", "ejs");
-app.use(express.static(path.join('./src', "public")));
-
+app.use(express.static(path.join("./src", "public")));
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -55,7 +52,7 @@ mongoose
 app.use("/api", userApi); // http://localhost:3000/api/user
 
 // dành cho cpnel
-app.use("/",webApi);// http://localhost:3000/
+app.use("/", webApi); // http://localhost:3000/
 
 app.listen(port, hostname, async () => {
   console.log(`Server is running on port ${port}`);
