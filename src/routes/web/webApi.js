@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {index,signin,signup} = require("../../controllers/WebController");
+const {index,signin,signup} = require("../../controllers/webController");
 
 // router.Method("/path", callbackFunction);
 
