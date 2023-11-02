@@ -38,7 +38,7 @@ app.use(
 );
 
 var url =
-  "mongodb+srv://thong:123@cluster0.nejvfjm.mongodb.net/GoTour?retryWrites=true&w=majority";
+  "mongodb+srv://linh:linh@cluster0.nejvfjm.mongodb.net/GoTour?retryWrites=true&w=majority";
 // kết nối database
 mongoose
   .connect(url, {

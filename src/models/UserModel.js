@@ -4,15 +4,13 @@ const ObjectId = Schema.ObjectId;
 
 const userSchema = new Schema({
     _id: { type: ObjectId },
-    userName: { type: String },
     password: { type: String },
-    fullname: { type: String },
-    gender: { type: Number },
+    fullName: { type: String },
     email: { type: String },
     address: { type: String },
     cccd: { type: String},
-    phoneNumer: { type: String },
+    phoneNumber: { type: String },
     score: { type: Number },
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('user', userSchema);
