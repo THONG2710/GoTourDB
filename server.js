@@ -32,14 +32,15 @@ app.use(cookieParser());
 
 const port = process.env.PORT ?? 8888;
 const hostname = process.env.HOSTNAME ?? "localhost";
-
+const secret = process.env.SECRET ?? "secret";
 app.use(
   session({
-    secret: "iloveyou", // bí mật
+    secret: secret, // bí mật
     resave: true,
     saveUninitialized: true,
     cookie: { secure: false },
   })
+ 
 );
 
 var url =

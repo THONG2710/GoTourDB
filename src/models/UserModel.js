@@ -11,6 +11,7 @@ const userSchema = new Schema({
     cccd: { type: String},
     phoneNumber: { type: String },
     score: { type: Number },
+    role: { type: Number },
 });
 
 module.exports = mongoose.model('user', userSchema);

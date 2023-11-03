@@ -43,7 +43,7 @@ const checkTokenWeb = (req, res, next) => {
                     } else {
                         // kiem tra role
                         const { role } = decoded;
-                        if (role < 100) {
+                        if (role !==1) {
                             req.session.destroy();
                             return res.redirect('/signin');
 
