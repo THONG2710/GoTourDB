@@ -1,23 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const {
-  index,
-  signin,
-  signup,
   postSignin,
-  hotels,
-  tours
-} = require("../../controllers/webController");
+  signIn,
+} = require("../../controllers/web/signInController");
 
-// router.Method("/path", callbackFunction);
-router.get("/signin", signin);
-router.get("/signup", signup);
-//table người dùng
-router.get("/", index);
-//table Hotels
-router.get("/hotels", hotels);
-//table Tours   
-router.get("/tours", tours);
+router.get("/signin", signIn);
 
 router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
@@ -30,6 +18,5 @@ router.post("/signin", async (req, res) => {
     res.redirect("/signin");
   }
 });
-
 
 module.exports = router;

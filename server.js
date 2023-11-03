@@ -10,9 +10,14 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // dành cho api
-const userApi = require("./src/routes/api/userApi");
+const appRouter = require("./src/routes/app/indexRouter");
 // dành cho cpnel
-const webApi = require("./src/routes/web/webApi");
+const {
+  signInRouter,
+  usersRouter,
+  hotelsRouter,
+  toursRouter,
+} = require("./src/routes/web/indexRouter");
 var app = express();
 
 // view engine setup
@@ -49,10 +54,15 @@ mongoose
   .catch((err) => console.log(">>>>>>>>> DB Error: ", err));
 
 // dành cho api
-app.use("/api", userApi); // http://localhost:3000/api/user
+// app.use("/api", appRouter); // http://localhost:3000/api/user
 
 // dành cho cpnel
-app.use("/", webApi); // http://localhost:3000/
+app.use(
+  signInRouter, // http://localhost:3000/signin
+  usersRouter, // http://localhost:3000/
+  hotelsRouter, // http://localhost:3000/hotels
+  toursRouter // http://localhost:3000/tours
+);
 
 app.listen(port, hostname, async () => {
   console.log(`Server is running on port ${port}`);

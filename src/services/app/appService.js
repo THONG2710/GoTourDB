@@ -1,5 +1,5 @@
 const e = require("express");
-const userModel = require("../models/userModel");
+const userModel = require("../../models/userModel");
 const { log } = require("console");
 
 
