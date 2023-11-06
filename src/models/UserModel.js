@@ -12,6 +12,7 @@ const userSchema = new Schema({
     phoneNumber: { type: String },
     score: { type: Number },
     role: { type: Number },
+    gender: { type: Number },
 });
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('users', userSchema);

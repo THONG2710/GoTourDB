@@ -10,7 +10,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // dành cho api
-const appRouter = require("./src/routes/app/indexRouter");
+const appRoute = require("./src/routes/app/indexRouter");
+const userRoute = require("./src/routes/app/usersRouter");
 // dành cho cpnel
 const {
   signInRouter,
@@ -55,7 +56,7 @@ mongoose
   .catch((err) => console.log(">>>>>>>>> DB Error: ", err));
 
 // dành cho api
-// app.use("/api", appRouter); // http://localhost:3000/api/user
+app.use("/user", userRoute); // http://localhost:3000/user  
 
 // dành cho cpnel
 app.use(

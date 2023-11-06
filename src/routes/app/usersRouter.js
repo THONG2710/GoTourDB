@@ -1,21 +1,17 @@
-
 const express = require("express");
 const router = express.Router();
-const userController = require("../../controllers/UserController");
+const userController = require("../../controllers/app/userController");
 
-
-// 192.168.1.53
-// http://42.116.118.69:3000/api/user/getUser
-router.get("/getuser", async (req, res, next) => {
+// http://localhost:3000/user/login
+router.post("/login", async (req, res, next) => {
   try {
-    // console.log("eeeeeeeeeeeeeee");
-    const users = await userController.getAllUser();
-
-    return res.status(200).json({ result: true, users: users });
+    const {email, password} = req.body;
+    const user = await userController.login(email, password);
+    console.log(email, password);
+    return res.status(200).json({ result: true, user: user });
   } catch (error) {
-    // return res.status(500).json({result: false, users: null});
+    return res.status(500).json({result: false, user: null});
   }
-  // res.send("get user");
 });
 
 module.exports = router;
