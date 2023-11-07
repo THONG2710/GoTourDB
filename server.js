@@ -7,6 +7,7 @@ const logger = require("morgan");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 dotenv.config();
 
 // dành cho api
@@ -43,6 +44,8 @@ app.use(
   })
  
 );
+
+app.use(cors());
 
 var url =
   "mongodb+srv://linh:linh@cluster0.nejvfjm.mongodb.net/GoTour?retryWrites=true&w=majority";
