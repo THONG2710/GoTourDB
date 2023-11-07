@@ -1,4 +1,5 @@
-const tourModel = require("../../models/tourModel");
+const { default: mongoose } = require("mongoose");
+let tourModel = require("../../models/tourModel");
 
 // lấy 10 tour 1 trang
 const getAllTours = async (page) => {
@@ -32,25 +33,43 @@ const deleteTour = async (id) => {
   }
 };
 // thêm tour
-const addTour = async (name, description, price, image) => {
+const addTour = async (
+  tourName,
+  departureDay,
+  endDate,
+  numberOfDays,
+  numberOfNights,
+  numberOfReservations,
+  schedule,
+  images,
+  typeOfTour,
+  departureLocation,
+  describe,
+  price
+) => {
   try {
-    return await tourModel.create({ name, description, price, image });
+    const newTour = {
+      tourName,
+      departureDay,
+      endDate,
+      numberOfDays,
+      numberOfNights,
+      numberOfReservations,
+      schedule,
+      images,
+      typeOfTour,
+      departureLocation,
+      describe,
+      price,
+      _id: new mongoose.Types.ObjectId(),
+    };
+    const tour = new tourModel(newTour);
+    await tour.save();
+    return true;
   } catch (error) {
+    console.log("add tour error: ", error);
     return false;
   }
-};
-
-const basePaginator = (list = [], currentPage = 1) => {
-  const total = list.length;
-  const limit = 10;
-
-  currentPage = (currentPage - 1) * (limit + 1);
-
-  return {
-    current_page: currentPage,
-    total: total,
-    next_page: currentPage + 1,
-  };
 };
 
 module.exports = { getAllTours, addTour, deleteTour, getAllToursPage };

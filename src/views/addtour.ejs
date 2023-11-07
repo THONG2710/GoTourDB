@@ -7,7 +7,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- logo -->
     <link href="img/logo.png" rel="icon" style="height: 40px;width: 40px;">
 
@@ -91,7 +92,7 @@
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
             <a href="/" class="navbar-brand d-flex d-lg-none me-4">
-                <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                <h2 class="text-primary mb-0"> <img src="img/logo.png" alt="" style="width: 60px; height: 60px;"></h2>
             </a>
             <a href="#" class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
@@ -186,62 +187,75 @@
         <!-- Form Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
-                <div class="col-sm-12 col-xl-12" >
-                    <div class="bg-secondary rounded h-100 p-4" >
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-secondary rounded h-100 p-4">
                         <h6 class="mb-4">Basic Form</h6>
-                        <form method="post" style="display: flex; flex-direction: row; flex-wrap: wrap;">
-                            <div class="m-3 me-5 col-sm-5"  >
+                        <form method="post" action="/addtour" enctype="multipart/form-data"
+                            style="display: flex; flex-direction: row; flex-wrap: wrap;">
+                            <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputEmail1" class="form-label">Tên Tour</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1">
+                                <input type="text" class="form-control" id="" name="tourName">
                             </div>
-                            <div class="m-3 me-5 col-sm-5"  >
+                            <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Ngày khởi hành</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <input type="text" class="form-control" id="" name="departureDay">
                             </div>
-                            <div class="m-3 me-5 col-sm-5"  >
-                                <label for="exampleInputPassword1" class="form-label">Số ngày</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="m-3 me-5 col-sm-5"  >
-                                <label for="exampleInputPassword1" class="form-label">Số đêm</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="m-3 me-5 col-sm-5"  >
-                                <label for="exampleInputPassword1" class="form-label">Số chỗ</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="m-3 me-5 col-sm-5"  >
-                                <label for="exampleInputPassword1" class="form-label">Lich trình</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="m-3 me-5 col-sm-5"  >
-                                <label for="exampleInputPassword1" class="form-label">Thể loại</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                        
-                            <div class="m-3 me-5 col-sm-5"  >
-                                <label for="exampleInputPassword1" class="form-label">Mô tả</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="m-3 me-5 col-sm-5"  >
-                                <label for="exampleInputPassword1" class="form-label">Địa điểm khởi hành</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="m-3 me-5 col-sm-5"  >
-                                <label for="exampleInputPassword1" class="form-label">Giá</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="m-3 me-5 col-sm-5"  >
-                                <label for="formFile" class="form-label">Ảnh</label>
-                                <input class="form-control bg-dark" type="file" id="formFile">
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Ngày kết thúc</label>
+                                <input type="text" class="form-control" id="" name="endDate">
                             </div>
 
-                            <div class="m-3 me-5 col-sm-5 mt-5"  >
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Số ngày</label>
+                                <input type="number" class="form-control" id="" name="numberOfDays">
+                            </div>
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Số đêm</label>
+                                <input type="number" class="form-control" id="" name="numberOfNights">
+                            </div>
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Số chỗ</label>
+                                <input type="number" class="form-control" id="" name="numberOfReservations">
+                            </div>
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Lich trình</label>
+                                <input type="text" class="form-control" id="" name="schedule">
+                            </div>
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Thể loại</label>
+                                <input type="text" class="form-control" id="" name="typeOfTour">
+                            </div>
+
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Mô tả</label>
+                                <input type="text" class="form-control" id="" name="describe">
+                            </div>
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Địa điểm khởi hành</label>
+                                <input type="text" class="form-control" id="" name="departureLocation">
+                            </div>
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Giá</label>
+                                <input type="number" class="form-control" id="" name="price">
+                            </div>
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="formFile" class="form-label">Ảnh</label>
+                                <input class="form-control bg-dark" type="file" id="formFile"
+                                    accept="image/png, image/gif, image/jpeg" name="images"
+                                    onchange="checkImage(event)">
+
+                            </div>
+
+                            <div class="m-3 me-5 col-sm-5 mt-5" style="display: flex; align-items: center; justify-content: center;">
 
                                 <button type="submit" class="btn btn-primary w-10 h-10">Xác nhận</button>
                             </div>
+                            <div class="m-3 me-5 col-sm-5 ">
 
-                           
+                                <img id="img" src="" style="height: 200px;">
+                            </div>
+
+
                         </form>
                     </div>
                 </div>
@@ -249,6 +263,38 @@
             </div>
         </div>
         <!-- Form End -->
+        <script>
+            const checkImage = (event) => {
+
+                const file = event.target.files[0];
+                // console.log(file);
+                const fileName = file.name;
+                const fileExtension = fileName.split('.').pop().toLowerCase();
+
+                if (fileExtension === 'png' || fileExtension === 'jpg' || fileExtension === 'jpeg') {
+                    // console.log("Đây là một tệp tin hình ảnh (PNG hoặc JPEG).");
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.getElementById("img");
+                        img.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    // console.log("Tệp tin không phải là hình ảnh (PNG hoặc JPEG).");
+                    Swal.fire({
+                        title: "Chỉ hổ trợ file ảnh (PNG hoặc JPEG)",
+                        icon: "warning",
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById("formFile").value = "";
+                            document.getElementById("img").src = "";
+                        }
+                    })
+                        ;
+                }
+            }
+        </script>
 
 
         <!-- Footer Start -->
@@ -261,7 +307,7 @@
                     <div class="col-12 col-sm-6 text-center text-sm-end">
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                         Designed By <a href="https://www.facebook.com/linhtungf" target="_blank">Linh đẹp trai</a>
-                     
+
                     </div>
                 </div>
             </div>

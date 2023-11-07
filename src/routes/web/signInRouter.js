@@ -8,6 +8,7 @@ const {
 const { checkTokenWeb } = require("../../middleware/authen");
 router.get("/signin", [checkTokenWeb], signIn);
 
+
 router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
   const result = await postSignin(email, password);
