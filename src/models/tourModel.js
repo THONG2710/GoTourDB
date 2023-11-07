@@ -14,7 +14,6 @@ const tourSchema = new Schema({
     images: { type: String },
     typeOfTour: { type: String },
     numberOfSeatsBooked: { type: String },
-    note: { type: String },
     departureLocation: { type: String },
     describe: { type: String },
     price: { type: String},

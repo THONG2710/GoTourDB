@@ -8,10 +8,10 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- logo -->
+    <link href="img/logo.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,23 +36,22 @@
 
 <body>
     <div class="container-fluid position-relative d-flex p-0">
-        <!-- Spinner Start -->
+        <!-- Spinner Start  -->
         <div id="spinner"
             class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <!-- Spinner End -->
+        <!--  Spinner End  -->
 
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-secondary navbar-dark">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
-
+                <a href="/" class="navbar-brand mx-4 mb-3">
                     <h3 class="text-primary">
-                        <img src="img/logo.png" alt="" style="width: 100px; height: 100px;margin: -20px;">
+                        <img src="img/logo.png" alt="" style="width: 60px; height: 60px;">
                         </i>GoTour
                     </h3>
                 </a>
@@ -89,8 +88,8 @@
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                <a href="/" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0">  <img src="img/logo.png" alt="" style="width: 60px; height: 60px;"></h2>
                 </a>
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
@@ -107,7 +106,7 @@
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" src="img/user.png" alt=""
+                                    <img class="rounded-circle" src="/img/user.png" alt=""
                                         style="width: 40px; height: 40px;">
                                     <div class="ms-2">
                                         <h6 class="fw-normal mb-0">Jhon send you a message</h6>
@@ -187,11 +186,24 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
+
                             <h6 class="mb-4">Bảng chuyến đi</h6>
+                            <div style="text-align: right;">
+                                <a href="/addtour">
+                                    <button type="button" class="btn btn-primary m-2"><i class="fa fa-plus me-2"
+                                            onclick=></i>Thêm tour</button>
+                                </a>
+
+
+                            </div>
+
+
+
                             <div class="table-responsive">
                                 <table class="table">
+
                                     <thead>
-                                        <tr style="color: #EB1616">
+                                        <tr style="color: #EB1616; ">
                                             <th scope="col">#</th>
                                             <th scope="col">Image</th>
                                             <th scope="col">Tour Name</th>
@@ -202,12 +214,12 @@
                                             <th scope="col">Số chỗ</th>
                                             <th scope="col">Lịch trình</th>
                                             <th scope="col">Thể loại</th>
-                                            <th scope="col">Số chỗ đã đặt</th>
+                                            <th style="min-width: 70px;" scope="col">Số chỗ đã đặt</th>
                                             <th scope="col">Mô tả</th>
                                             <th scope="col">Địa điểm khởi hành</th>
                                             <th scope="col">Giá</th>
-                                            <th scope="col">Favorites</th>
-
+                                            <th scope="col">Yêu thích</th>
+                                            <th scope="col">Action</th>
 
 
 
@@ -220,7 +232,7 @@
                                                     <%= index+1 %>
                                                 </th>
                                                 <td>
-                                                    <img src="<%= tour.images %>" alt="" width="100" height="100">
+                                                    <img src="<%= tour.images %>" alt="" width="100" >
                                                 </td>
                                                 <td>
                                                     <%= tour.tourName %>
@@ -249,7 +261,7 @@
                                                 <td>
                                                     <%= tour.numberOfSeatsBooked %>
                                                 </td>
-                                                <td>
+                                                <td style=" word-wrap: break-word; max-width: 200px;">
                                                     <%= tour.describe %>
                                                 </td>
                                                 <td>
@@ -261,18 +273,102 @@
                                                 <td>
                                                     <%= tour.favorites %>
                                                 </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary m-2"
+                                                        style="width: 40px; height: 40px;">
+                                                        <i class="fa fa-edit me-2"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary m-2"
+                                                        style="width: 40px; height: 40px;"
+                                                        onclick="confirmDelete('<%= tour._id %>')">
+                                                        <i class="fa fa-trash me-2"></i>
+                                                    </button>
 
+                                                </td>
 
 
                                             </tr>
                                             <% }) %>
+                                                <script>
+                                                    const deleteTour = async (id) => {
+                                                        const url = `/tours/delete/${id}`;
+                                                        const option = {
+                                                            method: "post",
+                                                        }
+                                                        try {
+                                                            const res = await fetch(url, option);
+                                                            if (res) {
+                                                                Swal.fire({
+                                                                    title: "Xóa thành công",
+                                                                    icon: "success",
+                                                                    confirmButtonText: "OK",
+                                                                }).then((result) => {
+                                                                    if (result.isConfirmed) {
+                                                                        window.location.reload();
+                                                                    }
+                                                                })
+
+                                                            }
+
+                                                            else {
+                                                                Swal.fire({
+                                                                    title: "Xóa không thành công",
+                                                                    icon: "error",
+                                                                })
+                                                            }
+                                                        }
+                                                        catch (err) {
+                                                            console.log(err);
+                                                            Swal.fire({
+                                                                title: "Xóa không thành công",
+                                                                icon: "error",
+                                                            })
+                                                        }
+                                                    }
+                                                    const confirmDelete = (id) => {
+                                                        // console.log(id);
+                                                        Swal.fire({
+                                                            title: "Bạn có chắc chắn muốn xóa không?",
+                                                            icon: "warning",
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: '#3085d6',
+                                                            cancelButtonColor: '#d33',
+                                                            confirmButtonText: "Xóa",
+                                                            cancelButtonText: "Hủy",
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                deleteTour(id);
+
+                                                            }
+                                                        })
+
+                                                    }
+
+                                                </script>
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
                     </div>
+                    <div style="display: flex; justify-content: center;">
+                        <% for(let i=1;i<=numberOfPages;i++){ %>
+                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                    <a href="/tours?page=<%=i%> ">
+                                        <button type="button"
+                                            class="<%= i == page ? 'btn btn-primary' : 'btn btn-secondary' %> ">
+                                            <%= i %>
+                                        </button>
+
+
+                                    </a>
+                            </div>
+                            <% } %>
+                    </div>
                 </div>
+
             </div>
+
             <!-- Table End -->
 
 
@@ -285,7 +381,7 @@
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">Linh đẹp trai</a>
+                            Designed By <a href="https://www.facebook.com/linhtungf"  target="_blank">Linh đẹp trai</a>
 
                         </div>
                     </div>

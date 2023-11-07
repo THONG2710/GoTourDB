@@ -19,7 +19,9 @@ const {
   usersRouter,
   hotelsRouter,
   toursRouter,
+
 } = require("./src/routes/web/indexRouter");
+const { addtour } = require("./src/controllers/web/toursController");
 var app = express();
 
 // view engine setup
@@ -66,7 +68,8 @@ app.use(
   signInRouter, // http://localhost:3000/signin
   usersRouter, // http://localhost:3000/
   hotelsRouter, // http://localhost:3000/hotels
-  toursRouter // http://localhost:3000/tours
+  toursRouter, // http://localhost:3000/tours
+
 );
 
 app.listen(port, hostname, async () => {
