@@ -23,9 +23,9 @@ const { addtour } = require("./src/controllers/web/toursController");
 var app = express();
 
 // view engine setup
-app.set("views", path.join("./src", "views"));
+app.set("views", path.join(__dirname, "src/views"));
 app.set("view engine", "ejs");
-app.use(express.static(path.join("./src", "public")));
+app.use(express.static(path.join(__dirname, "src/public")));
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -45,9 +45,10 @@ app.use(
  
 );
 
+
+// kết nối database
 var url =
   "mongodb+srv://linh:linh@cluster0.nejvfjm.mongodb.net/GoTour?retryWrites=true&w=majority";
-// kết nối database
 mongoose
   .connect(url, {
     useNewUrlParser: true,

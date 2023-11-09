@@ -32,6 +32,16 @@ const deleteTour = async (id) => {
     return false;
   }
 };
+// // xóa img tour tren firebase
+// const deleteOnFirebase = async (folder,fileName) => {
+//   try {
+
+//     return true;
+//   } catch (error) {
+//     return false;
+//   }
+// };
+
 // thêm tour
 const addTour = async (
   tourName,
@@ -71,5 +81,21 @@ const addTour = async (
     return false;
   }
 };
-
-module.exports = { getAllTours, addTour, deleteTour, getAllToursPage };
+// lấy tour theo id
+const getTourById = async (id) => {
+  try {
+    const tour = await tourModel.findById(id);
+    return tour;
+  } catch (error) {
+    console.log("get tour by id error: ", error);
+    return false;
+  }
+};
+module.exports = {
+  getAllTours,
+  addTour,
+  deleteTour,
+  getAllToursPage,
+  getTourById,
+  // deleteOnFirebase,
+};
