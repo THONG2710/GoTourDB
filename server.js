@@ -36,7 +36,7 @@ app.use(cookieParser());
 
 const port = process.env.PORT ?? 8888;
 const hostname = process.env.HOSTNAME ?? "localhost";
-const secret = process.env.SECRET ?? "secret";
+const secret = process.env.SECRET ?? "secret"; 
 app.use(
   session({
     secret: secret, // bí mật
@@ -73,5 +73,5 @@ app.use(
 );
 
 app.listen(port, hostname, async () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port} ${hostname}`);
 });
