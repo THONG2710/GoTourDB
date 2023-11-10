@@ -189,8 +189,8 @@
             <div class="row g-4">
                 <div class="col-sm-12 col-xl-12">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Basic Form</h6>
-                        <form method="post" action="/addtour" enctype="multipart/form-data"
+                        <h6 class="mb-4">Thêm chuyến đi</h6>
+                        <form method="post" enctype="multipart/form-data" id="form"
                             style="display: flex; flex-direction: row; flex-wrap: wrap;">
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputEmail1" class="form-label">Tên Tour</label>
@@ -246,9 +246,11 @@
 
                             </div>
 
-                            <div class="m-3 me-5 col-sm-5 mt-5" style="display: flex; align-items: center; justify-content: center;">
+                            <div class="m-3 me-5 col-sm-5 mt-5"
+                                style="display: flex; align-items: center; justify-content: center;">
 
-                                <button type="submit" class="btn btn-primary w-10 h-10">Xác nhận</button>
+                                <button type="button" class="btn btn-primary w-10 h-10" onclick="addTour()">Xác
+                                    nhận</button>
                             </div>
                             <div class="m-3 me-5 col-sm-5 ">
 
@@ -294,6 +296,73 @@
                         ;
                 }
             }
+
+
+            const addTour = async () => {
+                // e.preventDefault();
+                var formData = new FormData(document.getElementById('form'));
+                try {
+
+                    const url = "/addtour";
+                    const option = {
+                        method: "POST",
+                        body: formData
+                    }
+                    Swal.fire({
+                        title: "Đang thêm",
+                        showConfirmButton: false,
+                        willOpen: () => {
+                            Swal.showLoading()
+                        },
+
+                    })
+              
+                    const res = await fetch(url, option).then(res => res.json());
+                    // console.log(res);
+                    if (res) {
+                        Swal.fire({
+                            title: "Thêm thành công",
+                            icon: "success",
+                            confirmButtonText: "OK",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/tours";
+                            }
+                        })
+
+                    } else {
+                        Swal.fire({
+                            title: "Thêm không thành công",
+                            icon: "error",
+
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
+                        })
+                    }
+                } catch (error) {
+                    console.log(error);
+                    Swal.fire({
+                        title: "Thêm không thành công",
+                        icon: "error",
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    })
+                }
+
+
+
+
+
+
+
+            }
+
+
         </script>
 
 

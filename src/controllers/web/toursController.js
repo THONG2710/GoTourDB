@@ -1,10 +1,10 @@
-const webService = require("../../services/web/toursService");
+const toursService = require("../../services/web/toursService");
 
 // get all tours
 const getAllTours = async (page) => {
   try {
-    const tours = await webService.getAllTours(page);
-    const numberOfPages = await webService.getAllToursPage();
+    const tours = await toursService.getAllTours(page);
+    const numberOfPages = await toursService.getAllToursPage();
     return { tours, numberOfPages };
   } catch (error) {
     return error;
@@ -14,15 +14,20 @@ const getAllTours = async (page) => {
 // delete tour
 const deleteTour = async (id) => {
   try {
-    return await webService.deleteTour(id);
+    return await toursService.deleteTour(id);
   } catch (error) {
     return false;
   }
 };
-// add tour
-const addTour = async (req, res) => {
-  res.render("addtour.ejs");
-};
+// // delete img tour tren firebase
+// const deleteOnFirebase = async (folder,fileName) => {
+//   try {
+//     return await toursService.deleteOnFirebase(folder,fileName);
+//   } catch (error) {
+//     return false;
+//   }
+// };
+
 // post add tour
 const postAddTour = async (
   tourName,
@@ -39,7 +44,7 @@ const postAddTour = async (
   price
 ) => {
   try {
-    return await webService.addTour(
+    return await toursService.addTour(
       tourName,
       departureDay,
       endDate,
@@ -58,9 +63,58 @@ const postAddTour = async (
     return false;
   }
 };
+
+// get tour by id
+const getTourById = async (id) => {
+  try {
+    return await toursService.getTourById(id);
+  } catch (error) {
+    return false;
+  }
+};
+// post edit tourm
+const postEditTour = async (
+  id,
+  tourName,
+  departureDay,
+  endDate,
+  numberOfDays,
+  numberOfNights,
+  numberOfReservations,
+  schedule,
+  images,
+  typeOfTour,
+  departureLocation,
+  describe,
+  price
+) => {
+  try {
+    return await toursService.postEditTour(
+      id,
+      tourName,
+      departureDay,
+      endDate,
+      numberOfDays,
+      numberOfNights,
+      numberOfReservations,
+      schedule,
+      images,
+      typeOfTour,
+      departureLocation,
+      describe,
+      price
+    );
+  } catch (error) {
+    return false;
+  }
+};
+
 module.exports = {
   getAllTours,
-  addTour,
+
   postAddTour,
   deleteTour,
+  getTourById,
+  postEditTour,
+  // deleteOnFirebase,
 };
