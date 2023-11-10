@@ -34,8 +34,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-const port = process.env.PORT ?? 3000;
-const hostname = process.env.HOSTNAME ?? "0.0.0.0";
+const port = process.env.PORT ?? 8888;
+const hostname = process.env.HOSTNAME;
 const secret = process.env.SECRET ?? "secret"; 
 app.use(
   session({
