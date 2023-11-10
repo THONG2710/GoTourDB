@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const  toursController  = require("../../controllers/web/toursController");
+const toursController = require("../../controllers/web/toursController");
 const { checkTokenWeb } = require("../../middleware/authen");
 const {
   uploadFile,
   uploadFileToFirebase,
-  deleteFileFromFirebase
+  deleteFileFromFirebase,
 } = require("../../middleware/uploadFile");
-
 
 //table Tours
 // localhost:3000/tours?page=1
@@ -34,81 +33,124 @@ router.delete("/tours/delete/:id", [checkTokenWeb], async (req, res) => {
   }
 });
 //delete img Tour tren firebase
-router.delete("/tours/deleteonfirebase/:folder/:fileName", [checkTokenWeb], async (req, res) => {
-  try {
-    const { folder,fileName } = req.params;
+router.delete("/tours/deleteonfirebase/:fileName",[checkTokenWeb],async (req, res) => {
+    try {
+      const { fileName } = req.params;
       // console.log('>>>>>>>>>>>>>>>>>>>>',folder,fileName);
-    const result = await deleteFileFromFirebase(folder,fileName);
-    // console.log(result);
-    res.json(result);
-  } catch (error) {
-    return error;
+      const result = await deleteFileFromFirebase("imagesTour", fileName);
+      // console.log(result);
+      res.json(result);
+    } catch (error) {
+      return error;
+    }
   }
-});
-
+);
 
 // add Tour
-router.get("/addtour", [checkTokenWeb], (req,res) => {
+router.get("/addtour", [checkTokenWeb], (req, res) => {
   res.render("addtour.ejs");
-  });
+});
 
 // post add Tour
-router.post("/addtour", [checkTokenWeb,uploadFile.single("images")], async (req, res) => {
+router.post("/addtour",[checkTokenWeb, uploadFile.single("images")],async (req, res) => {
+    try {
+      let { body, file } = req;
+      // console.log(">>>>>>>>>>>>>>>>log>>>>>>>>>>>>>>>", body, file);
+      const images = await uploadFileToFirebase("imagesTour", file); // truyen vao file va ten folder tren firebase
+      // console.log(">>>>>>>>>>>>>>>>logimg>>>>>>>>>>>>>>>", images);
+      const {
+        tourName,
+        departureDay,
+        endDate,
+        numberOfDays,
+        numberOfNights,
+        numberOfReservations,
+        schedule,
+        typeOfTour,
+        departureLocation,
+        describe,
+        price,
+      } = body;
+      const result = await toursController.postAddTour(
+        tourName,
+        departureDay,
+        endDate,
+        numberOfDays,
+        numberOfNights,
+        numberOfReservations,
+        schedule,
+        images,
+        typeOfTour,
+        departureLocation,
+        describe,
+        price
+      );
+      // console.log(">>>>>>>>>>>>>>>>log", body);
+      // console.log(">>>>>>>>>>>>>>>>log>>>>>>>>>>>>>>>", result);
+      res.json(result);
+      // if (result) {
+      //   return res.redirect("/tours");
+      // } else {
+      //   return res.redirect("/addtour");
+      // }
+    } catch (error) {
+      return error;
+    }
+  }
+);
+// hien ra screen edit Tour by id
+router.get("/edittour/:id", [checkTokenWeb], async (req, res) => {
   try {
-    let { body, file } = req;
-    // console.log(">>>>>>>>>>>>>>>>log>>>>>>>>>>>>>>>", body, file);
-    const images = await uploadFileToFirebase(file,'imagesTour'); // truyen vao file va ten folder tren firebase
-    // console.log(">>>>>>>>>>>>>>>>logimg>>>>>>>>>>>>>>>", images);
-    const {
-      tourName,
-      departureDay,
-      endDate,
-      numberOfDays,
-      numberOfNights,
-      numberOfReservations,
-      schedule,
-      typeOfTour,
-      departureLocation,
-      describe,
-      price,
-    } = body;
-    const result = await toursController.postAddTour(
-      tourName,
-      departureDay,
-      endDate,
-      numberOfDays,
-      numberOfNights,
-      numberOfReservations,
-      schedule,
-      images,
-      typeOfTour,
-      departureLocation,
-      describe,
-      price
-    );
-    // console.log(">>>>>>>>>>>>>>>>log", body);
-    // console.log(">>>>>>>>>>>>>>>>log>>>>>>>>>>>>>>>", result);
-    res.json(result);
-    // if (result) {
-    //   return res.redirect("/tours");
-    // } else {
-    //   return res.redirect("/addtour");
-    // }
+    const { id } = req.params;
+    const tour = await toursController.getTourById(id);
+    // console.log(">>>>>>>>>>>>>>>>log", tour);
+    res.render("edittour.ejs", { tour });
   } catch (error) {
     return error;
   }
 });
-// hien ra screen edit Tour by id
-router.get("/edittour/:id", [checkTokenWeb], async (req, res) => {
-try {
-    const {id} = req.params;
-     const tour = await toursController.getTourById(id);
-    // console.log(">>>>>>>>>>>>>>>>log", tour);
-    res.render("edittour.ejs", { tour });
+// post edit Tour by id
+router.post("/edittour/:id",[checkTokenWeb, uploadFile.single("images")], async (req, res) => {
+    try {
+      let { body, file } = req;
+      let { id } = req.params;
 
-} catch (error) {
-  
-}
-});
+      const images = await uploadFileToFirebase("imagesTour",file);  // truyen vao file va ten folder tren firebase
+      
+      const {
+        tourName,
+        departureDay,
+        endDate,
+        numberOfDays,
+        numberOfNights,
+        numberOfReservations,
+        schedule,
+        typeOfTour,
+        departureLocation,
+        describe,
+        price,
+      } = body;
+      const result = await toursController.postEditTour(
+        id,
+        tourName,
+        departureDay,
+        endDate,
+        numberOfDays,
+        numberOfNights,
+        numberOfReservations,
+        schedule,
+        images,
+        typeOfTour,
+        departureLocation,
+        describe,
+        price
+      );
+      
+      res.json(result);
+    } catch (error) {
+      return error;
+    }
+  }
+);
 
 module.exports = router;

@@ -28,8 +28,6 @@ const deleteTour = async (id) => {
 //   }
 // };
 
-
-
 // post add tour
 const postAddTour = async (
   tourName,
@@ -66,19 +64,57 @@ const postAddTour = async (
   }
 };
 
-
+// get tour by id
 const getTourById = async (id) => {
   try {
     return await toursService.getTourById(id);
   } catch (error) {
     return false;
   }
-}
+};
+// post edit tourm
+const postEditTour = async (
+  id,
+  tourName,
+  departureDay,
+  endDate,
+  numberOfDays,
+  numberOfNights,
+  numberOfReservations,
+  schedule,
+  images,
+  typeOfTour,
+  departureLocation,
+  describe,
+  price
+) => {
+  try {
+    return await toursService.postEditTour(
+      id,
+      tourName,
+      departureDay,
+      endDate,
+      numberOfDays,
+      numberOfNights,
+      numberOfReservations,
+      schedule,
+      images,
+      typeOfTour,
+      departureLocation,
+      describe,
+      price
+    );
+  } catch (error) {
+    return false;
+  }
+};
+
 module.exports = {
   getAllTours,
-  
+
   postAddTour,
   deleteTour,
   getTourById,
+  postEditTour,
   // deleteOnFirebase,
 };

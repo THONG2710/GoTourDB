@@ -64,7 +64,7 @@ const uploadFile = multer({
 });
 
 // upload file len firebase
-const uploadFileToFirebase = async (file, folder) => {
+const uploadFileToFirebase = async (folder, file) => {
   // console.log(file, 111);
   // console.log('>>>>>>>>>>>>>>>>>>>>',folder);
   // tao duong dan file tren firebase storage và ten file

@@ -23,8 +23,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +92,8 @@
         <!-- Navbar Start -->
         <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
             <a href="/" class="navbar-brand d-flex d-lg-none me-4">
-                <h2 class="text-primary mb-0"> <img src="../img/logo.png" alt="" style="width: 60px; height: 60px;"></h2>
+                <h2 class="text-primary mb-0"> <img src="../img/logo.png" alt="" style="width: 60px; height: 60px;">
+                </h2>
             </a>
             <a href="#" class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
@@ -189,54 +190,64 @@
             <div class="row g-4">
                 <div class="col-sm-12 col-xl-12">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Basic Form</h6>
+                        <h6 class="mb-4">Chỉnh sửa chuyến đi</h6>
                         <form method="post" enctype="multipart/form-data" id="form"
                             style="display: flex; flex-direction: row; flex-wrap: wrap;">
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputEmail1" class="form-label">Tên Tour</label>
-                                <input type="text" class="form-control" id="" name="tourName">
+                                <input type="text" class="form-control" id="" name="tourName"
+                                    value="<%= tour.tourName %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Ngày khởi hành</label>
-                                <input type="text" class="form-control" id="" name="departureDay">
+                                <input type="text" class="form-control" id="" name="departureDay"
+                                    value="<%= tour.departureDay %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Ngày kết thúc</label>
-                                <input type="text" class="form-control" id="" name="endDate">
+                                <input type="text" class="form-control" id="" name="endDate"
+                                    value="<%= tour.endDate %>">
                             </div>
 
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Số ngày</label>
-                                <input type="number" class="form-control" id="" name="numberOfDays">
+                                <input type="number" class="form-control" id="" name="numberOfDays"
+                                    value="<%= tour.numberOfDays %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Số đêm</label>
-                                <input type="number" class="form-control" id="" name="numberOfNights">
+                                <input type="number" class="form-control" id="" name="numberOfNights"
+                                    value="<%= tour.numberOfNights %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Số chỗ</label>
-                                <input type="number" class="form-control" id="" name="numberOfReservations">
+                                <input type="number" class="form-control" id="" name="numberOfReservations"
+                                    value="<%= tour.numberOfReservations %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Lich trình</label>
-                                <input type="text" class="form-control" id="" name="schedule">
+                                <input type="text" class="form-control" id="" name="schedule"
+                                    value="<%= tour.schedule %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Thể loại</label>
-                                <input type="text" class="form-control" id="" name="typeOfTour">
+                                <input type="text" class="form-control" id="" name="typeOfTour"
+                                    value="<%= tour.typeOfTour %>">
                             </div>
 
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Mô tả</label>
-                                <input type="text" class="form-control" id="" name="describe">
+                                <input type="text" class="form-control" id="" name="describe"
+                                    value="<%= tour.describe %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Địa điểm khởi hành</label>
-                                <input type="text" class="form-control" id="" name="departureLocation">
+                                <input type="text" class="form-control" id="" name="departureLocation"
+                                    value="<%= tour.departureLocation %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Giá</label>
-                                <input type="number" class="form-control" id="" name="price">
+                                <input type="number" class="form-control" id="" name="price" value="<%= tour.price %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="formFile" class="form-label">Ảnh</label>
@@ -249,12 +260,12 @@
                             <div class="m-3 me-5 col-sm-5 mt-5"
                                 style="display: flex; align-items: center; justify-content: center;">
 
-                                <button type="button" class="btn btn-primary w-10 h-10" onclick="addTour()">Xác
+                                <button type="button" class="btn btn-primary w-10 h-10" onclick="confirmEditTour()">Xác
                                     nhận</button>
                             </div>
                             <div class="m-3 me-5 col-sm-5 ">
 
-                                <img id="img" src="" style="height: 200px;">
+                                <img id="img" src="<%= tour.images %>" style="height: 200px;">
                             </div>
 
 
@@ -297,8 +308,64 @@
                 }
             }
 
+            const confirmEditTour = async () => {
+                var formData = new FormData(document.getElementById('form'));
+                try {
 
-            
+                    const url = "/edittour/<%= tour.id %>";
+                    const option = {
+                        method: "POST",
+                        body: formData
+                    }
+                    Swal.fire({
+                        title: "Đang sửa",
+                        showConfirmButton: false,
+                        willOpen: () => {
+                            Swal.showLoading()
+                        },
+
+                    })
+
+                    const res = await fetch(url, option).then(res => res.json());
+                    // console.log(res);
+                    if (res) {
+                        Swal.fire({
+                            title: "Chỉnh sửa thành công",
+                            icon: "success",
+                            confirmButtonText: "OK",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/tours";
+                            }
+                        })
+
+                    } else {
+                        Swal.fire({
+                            title: "Chỉnh sửa không thành công",
+                            icon: "error",
+
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
+                        })
+                    }
+                } catch (error) {
+                    console.log(error);
+                    Swal.fire({
+                        title: "Chỉnh sửa không thành công",
+                        icon: "error",
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    })
+                }
+            }
+
+
+
 
         </script>
 
@@ -330,13 +397,13 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="../lib/chart/chart.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="../js/main.js"></script>

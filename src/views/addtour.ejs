@@ -189,7 +189,7 @@
             <div class="row g-4">
                 <div class="col-sm-12 col-xl-12">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Basic Form</h6>
+                        <h6 class="mb-4">Thêm chuyến đi</h6>
                         <form method="post" enctype="multipart/form-data" id="form"
                             style="display: flex; flex-direction: row; flex-wrap: wrap;">
                             <div class="m-3 me-5 col-sm-5">
@@ -301,7 +301,6 @@
             const addTour = async () => {
                 // e.preventDefault();
                 var formData = new FormData(document.getElementById('form'));
-
                 try {
 
                     const url = "/addtour";
