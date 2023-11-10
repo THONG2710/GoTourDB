@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 const port = process.env.PORT ?? 8888;
-const hostname = process.env.HOSTNAME;
+const hostname = process.env.HOSTNAME ?? "localhost";
 const secret = process.env.SECRET ?? "secret"; 
 app.use(
   session({
