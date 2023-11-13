@@ -223,7 +223,15 @@
                             </div>
                             <div class="m-3 me-5 col-sm-5">
                                 <label for="exampleInputPassword1" class="form-label">Thể loại</label>
-                                <input type="text" class="form-control" id="" name="typeOfTour">
+                                <select class="form-control" name="typeOfTour">
+                                 
+                                   <% typeOfTour.forEach(type=>{ %>
+                                    <option value="<%= type.typeName %>"><%= type.typeName %></option>
+                                    <% }) %>
+
+
+                                </select>
+
                             </div>
 
                             <div class="m-3 me-5 col-sm-5">
@@ -316,7 +324,7 @@
                         },
 
                     })
-              
+
                     const res = await fetch(url, option).then(res => res.json());
                     // console.log(res);
                     if (res) {
