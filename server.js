@@ -13,6 +13,7 @@ dotenv.config();
 // dành cho api
 const appRoute = require("./src/routes/app/indexRouter");
 const userRoute = require("./src/routes/app/usersRouter");
+const tourRoute = require("./src/routes/app/tourRouter");
 // dành cho cpnel
 const {
   signInRouter,
@@ -61,8 +62,8 @@ mongoose
   .catch((err) => console.log(">>>>>>>>> DB Error: ", err));
 
 // dành cho api
-app.use("/user", userRoute); // http://localhost:3000/user  
-
+app.use("/api/user", userRoute); // http://localhost:3000/user  
+app.use("/api/tour", tourRoute); // 
 // dành cho cpnel
 app.use(
   signInRouter, // http://localhost:3000/signin

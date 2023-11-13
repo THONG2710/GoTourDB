@@ -191,7 +191,7 @@
                             <div style="text-align: right;">
                                 <a href="/addtour">
                                     <button type="button" class="btn btn-primary m-2"><i class="fa fa-plus me-2"
-                                            onclick=></i>Thêm tour</button>
+                                            onclick=></i>Thêm chuyến đi</button>
                                 </a>
                             </div>
                             <div class="table-responsive">
@@ -227,7 +227,7 @@
                                                     <%= index+1 %>
                                                 </th>
                                                 <td>
-                                                    <img src="<%= tour.images %>" alt="" width="100">
+                                                    <img src="<%= tour.images %>" alt="" height="100">
                                                 </td>
                                                 <td>
                                                     <%= tour.tourName %>
@@ -322,19 +322,21 @@
                     try {
                         // urlImage la url firebase ảnh
                         //xu ly url de lay folder va filename
-                        const path = new URL(urlImage).pathname.slice(1); // tach chuoi url lay ra path sau ...com/
-                        // const folder = (path.split("/")[4].split("%2F"))[0];  // lay ra folder
-                        const fileName = path.split("%2F")[1]; // lay ra filename
+                        if (urlImage) {
+                            const path = new URL(urlImage).pathname.slice(1); // tach chuoi url lay ra path sau ...com/
+                            // const folder = (path.split("/")[4].split("%2F"))[0];  // lay ra folder
+                            var fileName = path.split("%2F")[1]; // lay ra filename
 
-                        // console.log(folder, fileName);
-                        const urlFirebase = `/tours/deleteonfirebase/${fileName}`;
+                            // console.log(folder, fileName);
+                            var urlFirebase = `/tours/deleteonfirebase/${fileName}`;
+                        }
                         const url = `/tours/delete/${id}`;
                         const option = {
                             method: "delete",
                         }
                         const res = await fetch(url, option).then((res) => res.json());
                         // console.log(res);
-                        if (res) {
+                        if (res && urlImage) {
                             try {
                                 const resFirebase = await fetch(urlFirebase, option).then((res) => res.json());
                                 if (resFirebase) {
@@ -361,10 +363,16 @@
                             }
 
                         } else {
-                            Swal.fire({
-                                title: "Xóa không thành công",
-                                icon: "error",
-                            })
+                            if (res) {
+                                Swal.fire({
+                                    title: "Xóa thành công",
+                                    icon: "success",
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.reload();
+                                    }
+                                })
+                            }
                         }
                     } catch (err) {
                         console.log(err);
