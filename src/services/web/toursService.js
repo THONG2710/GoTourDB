@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const tourModel = require("../../models/tourModel");
 const { deleteFileFromFirebase } = require("../../middleware/uploadFile");
+const typeOfTourModel = require("../../models/typeOfTourModel");
 
 // lấy 10 tour 1 trang
 const getAllTours = async (page) => {
@@ -115,24 +116,34 @@ const postEditTour = async (
       tour.departureDay = departureDay ? departureDay : tour.departureDay;
       tour.endDate = endDate ? endDate : tour.endDate;
       tour.numberOfDays = numberOfDays ? numberOfDays : tour.numberOfDays;
-      tour.numberOfNights = numberOfNights ? numberOfNights : tour.numberOfNights;
-      tour.numberOfReservations = numberOfReservations ? numberOfReservations : tour.numberOfReservations;
+      tour.numberOfNights = numberOfNights
+        ? numberOfNights
+        : tour.numberOfNights;
+      tour.numberOfReservations = numberOfReservations
+        ? numberOfReservations
+        : tour.numberOfReservations;
       tour.schedule = schedule ? schedule : tour.schedule;
-        // xoa img cu tren firebase
-      if(images){
-        // xu ly link images tren firebase roi  xoa file tren firebase
+      // xoa img cu tren firebase
+
+      if (images && tour?.images) {
+        // xu ly link images tren frebase roi  xoa file tren firebase
         const path = new URL(tour.images).pathname.slice(1);
         const fileName = path.split("%2F")[1];
-        const result = await deleteFileFromFirebase("imagesTour",fileName); // xoa file tren firebase
-        if(result){tour.images = images }
+        const result = await deleteFileFromFirebase("imagesTour", fileName); // xoa file tren firebase
+        // console.log(">>>>>>>>>>>>>>>>log>>>>>>>>>>", fileName, result);
+        if (result) {
+          tour.images = images;
+        }
       }else{
-        tour.images = tour.images;
+        tour.images = images ? images : tour.images;
       }
       tour.typeOfTour = typeOfTour ? typeOfTour : tour.typeOfTour;
-      tour.departureLocation = departureLocation ? departureLocation : tour.departureLocation;
+      tour.departureLocation = departureLocation
+        ? departureLocation
+        : tour.departureLocation;
       tour.describe = describe ? describe : tour.describe;
       tour.price = price ? price : tour.price;
-
+      // console.log(">>>>>>>>>>>>>>>>log", tour);
       await tour.save();
       return true;
     }
@@ -141,8 +152,16 @@ const postEditTour = async (
     return false;
   }
 };
+const getTypeOfTour = async () => {
+  try {
+    return await typeOfTourModel.find();
+  } catch (error) {
+    return error;
+  }
+};
 module.exports = {
   getAllTours,
+  getTypeOfTour,
   addTour,
   deleteTour,
   getAllToursPage,

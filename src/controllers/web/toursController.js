@@ -108,10 +108,17 @@ const postEditTour = async (
     return false;
   }
 };
+const getTypeOfTour = async () => {
+  try {
+    return await toursService.getTypeOfTour();
 
+  } catch (error) {
+    return false;
+  }
+};
 module.exports = {
   getAllTours,
-
+  getTypeOfTour,
   postAddTour,
   deleteTour,
   getTourById,
