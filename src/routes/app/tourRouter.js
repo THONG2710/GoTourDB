@@ -1,8 +1,6 @@
 const express = require("express");
 const tourController = require('../../controllers/app/tourController');
-const { async } = require("@firebase/util");
 const router = express.Router();
-
 
 // http://localhost:3000/api/tour/getAllTours
 router.get('/getAllTours', async (req, res, next) => {

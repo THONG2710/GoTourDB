@@ -13,6 +13,7 @@ const userSchema = new Schema({
     score: { type: Number },
     role: { type: Number },
     gender: { type: Number },
+    avatar: { type: String },
 });
 
 module.exports = mongoose.model('users', userSchema);

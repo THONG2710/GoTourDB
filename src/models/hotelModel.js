@@ -6,11 +6,12 @@ const hotelSchema = new Schema({
     _id: { type: ObjectId },
     hotelName: { type: String },
     address: { type: String },
-    star: { type: String },
+    star: { type: Number },
     images: { type: String },
     price: { type: String},
     favorites: { type: String },
-    
+    include: { type: String },
+    note: { type: String },
 });
 
-module.exports = mongoose.model('hotel', hotelSchema);
+module.exports = mongoose.model('hotels', hotelSchema);
