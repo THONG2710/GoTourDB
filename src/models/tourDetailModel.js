@@ -9,7 +9,8 @@ const tourDetailSchema = new Schema({
     transport: { type: String }, // phương tiện di chuyển
     content: { type: String }, 
     tourGuide: { type: String}, // hướng dẫn viên 
-    hotel: { type: String },
+    hotel: { type: Array },
+    describe: { type: String },
 });
 
 module.exports = mongoose.model('tourdetails', tourDetailSchema);

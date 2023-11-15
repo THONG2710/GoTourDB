@@ -10,7 +10,7 @@ const hotelSchema = new Schema({
     images: { type: String },
     price: { type: String},
     favorites: { type: String },
-    include: { type: String },
+    include: { type: Array },
     note: { type: String },
 });
 

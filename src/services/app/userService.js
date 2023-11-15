@@ -17,7 +17,10 @@ const loginApp = async (email, password) => {
 const signUp = async (email, password) => {
     try {
         const user = await userModel.findOne({email: email}).exec();
-        if (user ) return false;
+        if (user ) {
+            console.log(email + " already exists!!");
+            return false;
+        }
         const newUser = {_id: null, email, password, fullName: "", address: "", cccd: "", phoneNumber: "", score: 0, role: 0, gender: 0, avatar: ""};
         const nUser = new userModel(newUser);
         const cUser = await nUser.save();

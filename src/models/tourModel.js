@@ -15,10 +15,8 @@ const tourSchema = new Schema({
     typeOfTour: { type: String },
     numberOfSeatsBooked: { type: String },
     departureLocation: { type: String },
-    describe: { type: String },
     price: { type: String},
     favorites: { type: String },
-    
 });
 
 module.exports = mongoose.model('tour', tourSchema);

@@ -9,6 +9,17 @@ const getAllHotelController = async () => {
     } catch (error) {
         console.log('get all hotel controller error: ' + error);
     }
-}
+};
 
-module.exports = {getAllHotelController};
+// get all service hotel
+const getAllServiceHotelController = async () => {
+    try {
+        const services = await hotelService.getAllServiceHotel();
+        return services;
+    } catch (error) {
+        console.log("get all service hotel controller error: " + error);
+    }
+};
+
+
+module.exports = {getAllHotelController, getAllServiceHotelController};
