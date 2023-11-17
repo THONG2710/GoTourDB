@@ -55,10 +55,35 @@ router.get('/getSchedule', async (req, res, next) => {
         if (schedule) {
             return res.status(200).json({result: true, schedule: schedule});
         }
-        return res.status(500).json({result: false, schedule: schedule});
+        return res.status(500).json({result: false, schedule: null});
     } catch (error) {
-        return res.status(500).json({result: false, schedule: schedule});
+        return res.status(500).json({result: false, schedule: null});
     }
 });
+
+// http://localhost:3000/api/tour/getBookTour
+router.get('/getBookTour', async (req, res, next) => {
+    try {
+        const booktours = await tourController.getBookTourController();
+        if (booktours) {
+            return res.status(200).json({result: true, booktours: booktours});
+        }
+        return res.status(500).json({result: false, booktours: null});
+    } catch (error) {
+        return res.status(500).json({result: false, booktours: null});
+    }
+});
+
+// http://localhost:3000/api/tour/bookTour
+router.post('/bookTour', async (req, res, next) => {
+    try {
+        const {date, user, totalAmout, numberOfReservations, tour} = req.body;
+        const booktour = await tourController.bookTourController(date, user, totalAmout, numberOfReservations, tour);
+        return res.status(200).json({result: true, booktour: booktour});
+    } catch (error) {
+        res.status(500).json({result: false, booktours: false});
+    }
+});
+
 
 module.exports = router;
