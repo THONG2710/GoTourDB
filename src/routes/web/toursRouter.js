@@ -14,8 +14,8 @@ router.get("/tours", [checkTokenWeb], async (req, res) => {
   try {
     let page = req.query.page || 1;
     const { tours, numberOfPages } = await toursController.getAllTours(page);
-
-    res.render("tours.ejs", { tours, numberOfPages, page });
+    console.log(">>>>>>>>>>>>>>>>log", tours);
+    res.render("tour/tours.ejs", { tours, numberOfPages, page });
   } catch (error) {
     return error;
   }
@@ -54,7 +54,7 @@ router.get("/addtour", [checkTokenWeb], async (req, res) => {
   try {
     const typeOfTour = await toursController.getTypeOfTour();
     //  console.log(">>>>>>>>>>>>>>>>log", typeOfTour);
-    res.render("addtour.ejs", { typeOfTour });
+    res.render("tour/addtour.ejs", { typeOfTour });
   } catch (error) {
     return error;
   }
@@ -126,7 +126,7 @@ router.get("/edittour/:id", [checkTokenWeb], async (req, res) => {
     //   return item;
     // });
     // console.log(">>>>>>>>>>>>>>>>log", typeOfTour);
-    res.render("edittour.ejs", { tour, typeOfTour });
+    res.render("tour/edittour.ejs", { tour, typeOfTour });
   } catch (error) {
     return error;
   }

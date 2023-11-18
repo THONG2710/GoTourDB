@@ -14,7 +14,7 @@ router.get("/hotels", [checkTokenWeb], async (req, res) => {
     let page = req.query.page || 1;
     const { hotels, numberOfPages } = await hotelsController.getAllHotels(page);
 
-    res.render("hotels.ejs", { hotels, numberOfPages, page });
+    res.render("hotel/hotels.ejs", { hotels, numberOfPages, page });
   } catch (error) {
     return error;
   }
@@ -49,7 +49,7 @@ router.delete(
 
 // add Hotel
 router.get("/addhotel", [checkTokenWeb], (req, res) => {
-  res.render("addhotel.ejs");
+  res.render("hotel/addhotel.ejs");
 });
 
 // post add Hotel
@@ -89,7 +89,7 @@ router.get("/edithotel/:id", [checkTokenWeb], async (req, res) => {
     const { id } = req.params;
     const hotel = await hotelsController.getHotelById(id);
     // console.log(">>>>>>>>>>>>>>>>log", hotel);
-    res.render("edithotel.ejs", { hotel });
+    res.render("hotel/edithotel.ejs", { hotel });
   } catch (error) {
     return error;
   }
