@@ -1,4 +1,6 @@
-const userModel = require("../../models/userModel")
+const userModel = require("../../models/userModel");
+const bookTour = require('../../models/bookTourModel');
+const bookTourModel = require("../../models/bookTourModel");
 
 // đăng nhập vào app
 const loginApp = async (email, password) => {
@@ -29,6 +31,19 @@ const signUp = async (email, password) => {
         console.log('signUp error: =======> ', error);
     }
     return false
-}
+};
 
-module.exports = {loginApp, signUp}
+// lấy danh sách tour theo người dùng
+const getTourByUser = async (id) => {
+    try {
+        const tours = await bookTourModel.find({user: id});
+        if (tours) {
+            return tours;
+        }
+        return null;
+    } catch (error) {
+        console.log('get tour by user error: ', error);
+    }
+};
+
+module.exports = {loginApp, signUp, getTourByUser}

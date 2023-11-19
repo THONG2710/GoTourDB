@@ -7,7 +7,7 @@ router.post("/login", async (req, res, next) => {
   try {
     const {email, password} = req.body;
     const user = await userController.login(email, password);
-    console.log(email, password);
+    // console.log(email, password);
     return res.status(200).json({ result: true, user: user });
   } catch (error) {
     return res.status(500).json({result: false, user: null});
@@ -30,5 +30,18 @@ router.post('/signUp', async (req, res, next) => {
   }
 });
 
+// http://localhost:3000/api/user/getTourByIdUser?id= 
+router.get('/getTourByIdUser', async (req, res, next) => {
+  try {
+    const {id} = req.query;
+    const tours = await userController.getTourByUser(id);
+    if (tours.length > 0) {
+      return res.status(200).json({ result: true, tours: tours });
+    }
+    return res.status(400).json({ result: false, tours: null });
+  } catch (error) {
+    return res.status(500).json({ result: false, tours: null });
+  }
+});
 
 module.exports = router;
