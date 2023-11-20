@@ -46,7 +46,7 @@ const hostname = process.env.HOSTNAME ?? "localhost";
 const secret = process.env.SECRET ?? "secret"; 
 app.use(
   session({
-    secret: secret, // bí mật
+    secret: secret, // bí mật nnn
     resave: true,
     saveUninitialized: true,
     cookie: { secure: false },
