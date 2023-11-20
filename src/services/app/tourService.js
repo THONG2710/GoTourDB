@@ -30,6 +30,19 @@ const getAllContentTour = async () => {
   }
 };
 
+// lấy chi tiết của một tour
+const getDetailTourById = async (id) => {
+  try {
+    const detail = await tourDetailModel.find({tour: id});
+    if (detail.length > 0) {
+      return detail;
+    }
+    return null;
+  } catch (error) {
+    console.log('get detail tour by id failed: ' + error);
+  }
+};
+
 // lấy tất cả chi tiết của tour
 const getAllDetailTour = async () => {
   try {
@@ -112,4 +125,5 @@ module.exports = {
   getTheTourSchedule,
   getBookTour,
   bookTour,
+  getDetailTourById
 };

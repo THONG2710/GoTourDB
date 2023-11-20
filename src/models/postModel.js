@@ -9,7 +9,7 @@ const postSchema = new Schema({
     time: { type: String },
     caption: { type: String },
     images: { type: String },
-    favorites: { type: Number },
+    favorites: { type: Array },
 });
 
 module.exports = mongoose.model('posts', postSchema);   

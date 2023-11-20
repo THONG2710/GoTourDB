@@ -33,7 +33,8 @@ router.get('/getAllTourDetail', async (req, res, next) => {
     }
 });
 
-// http://localhost:3000/api/tour/getTourById?id=
+// http://localhost:3000/api/tour/getTourById?id=   
+// lấy chi tiết một tour
 router.get('/getTourById', async (req, res, next) => {
     try {
         const {id} = req.query;
@@ -44,6 +45,20 @@ router.get('/getTourById', async (req, res, next) => {
         return res.status(500).json({result: false, tour: null});
     } catch (error) {
         return res.status(500).json({result: false, tour: null});
+    }
+});
+
+// http://localhost:3000/api/tour/getDetailTourById?id=   
+router.get('/getDetailTourById', async (req, res, next) => {
+    try {
+        const {id} = req.query;
+        const detail = await tourController.getDetailTourByIdController(id);
+        if (detail) {
+            return res.status(200).json({result: true, detail: detail});
+        }  
+        return res.status(404).json({result: false, detail: null});
+    } catch (error) {
+        return res.status(500).json({result: false, detail: null});
     }
 });
 

@@ -24,4 +24,12 @@ const getTourByUser = async (id) => {
   }
 };
 
-module.exports = { login, SignUp, getTourByUser };
+const getUserByIdController = async (id) => {
+  try {
+    return await UserService.getUserById(id);
+  } catch (error) {
+    console.log('get user by user controller error: ' + error);
+  }
+}
+
+module.exports = { login, SignUp, getTourByUser, getUserByIdController };

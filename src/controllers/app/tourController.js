@@ -41,6 +41,15 @@ const getTourByIdController = async (id) => {
   }
 };
 
+// get detail tour by id
+const getDetailTourByIdController = async (id) => {
+  try {
+    return await tourService.getDetailTourById(id);
+  } catch (error) {
+    console.log('get detail tour by id controller error: ', error);
+  }
+};
+
 // get schedule
 const getTheTourScheduleController = async (idTourDetail) => {
   try {
@@ -78,5 +87,6 @@ module.exports = {
   getTourByIdController,
   getTheTourScheduleController,
   getBookTourController,
-  bookTourController
+  bookTourController,
+  getDetailTourByIdController
 };

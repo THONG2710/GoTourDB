@@ -46,4 +46,17 @@ const getTourByUser = async (id) => {
     }
 };
 
-module.exports = {loginApp, signUp, getTourByUser}
+// lấy người dùng thông qua id
+const getUserById = async (id) => {
+    try {
+        const user = await userModel.findById(id);
+        if (user) {
+            return user;
+        }
+        return null;
+    } catch (error) {
+        console.log('get user by id error: ' + error);
+    }
+}
+
+module.exports = {loginApp, signUp, getTourByUser, getUserById}
