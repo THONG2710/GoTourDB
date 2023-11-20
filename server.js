@@ -17,10 +17,14 @@ const {
   usersRouter,
   hotelsRouter,
   toursRouter,
+  trainsRouter,
+  airlinesRouter,
 
 } = require("./src/routes/web/indexRouter");
-const { addtour } = require("./src/controllers/web/toursController");
+
 var app = express();
+
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "src/views"));
@@ -66,6 +70,8 @@ app.use(
   usersRouter, // http://localhost:3000/
   hotelsRouter, // http://localhost:3000/hotels
   toursRouter, // http://localhost:3000/tours
+  airlinesRouter, // http://localhost:3000/airlines
+  trainsRouter, // http://localhost:3000/destinations
 
 );
 

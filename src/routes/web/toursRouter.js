@@ -14,7 +14,7 @@ router.get("/tours", [checkTokenWeb], async (req, res) => {
   try {
     let page = req.query.page || 1;
     const { tours, numberOfPages } = await toursController.getAllTours(page);
-    console.log(">>>>>>>>>>>>>>>>log", tours);
+    // console.log(">>>>>>>>>>>>>>>>log", tours);
     res.render("tour/tours.ejs", { tours, numberOfPages, page });
   } catch (error) {
     return error;

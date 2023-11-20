@@ -14,8 +14,8 @@ module.exports = {
     usersRouter,
     hotelsRouter,
     toursRouter,
-    // airlinesRouter,
-    // trainsRouter,
+    airlinesRouter,
+    trainsRouter,
     };
 
 
