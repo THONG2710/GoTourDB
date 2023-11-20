@@ -59,7 +59,7 @@ router.post(
   async (req, res) => {
     try {
       let { body, file } = req;
-      // console.log(">>>>>>>>>>>>>>>>log>>>>>>>>>>>>>>>", body, file);
+      console.log(">>>>>>>>>>>>>>>>log>>>>>>>>>>>>>>>", body);
       const images = file ? await uploadFileToFirebase("imagesHotel", file) : "";// truyen vao file va ten folder tren firebase
       // console.log(">>>>>>>>>>>>>>>>logimg>>>>>>>>>>>>>>>", images);
       const { hotelName, address, star, price } = body;
