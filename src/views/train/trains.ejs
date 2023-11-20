@@ -70,11 +70,11 @@
                 <div class="navbar-nav w-100">
 
 
-                    <a href="/" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Người dùng</a>
+                    <a href="/" class="nav-item nav-link "><i class="fa fa-user me-2"></i>Người dùng</a>
                     <a href="hotels" class="nav-item nav-link "><i class="fa fa-hotel me-2"></i>Khách sạn</a>
-                    <a href="" class="nav-item nav-link active"><i class="fa fa-route me-2"></i>Chuyến đi</a>
-                    <a href="" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Tables</a>
+                    <a href="/tours" class="nav-item nav-link "><i class="fa fa-route me-2"></i>Chuyến đi</a>
+                    <a href="/airlines" class="nav-item nav-link  "><i class="fa fa-plane me-2"></i>Chuyến bay</a>
+                    <a href="/trains" class="nav-item nav-link active "><i class="fa fa-train me-2"></i>Chuyến tàu</a>
 
 
 
@@ -187,11 +187,11 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Bảng chuyến đi</h6>
+                            <h6 class="mb-4">Bảng Chuyến tàu</h6>
                             <div style="text-align: right;">
-                                <a href="/addtour">
+                                <a href="/addtrain">
                                     <button type="button" class="btn btn-primary m-2"><i class="fa fa-plus me-2"
-                                            onclick=></i>Thêm chuyến đi</button>
+                                            onclick=></i>Thêm chuyến tàu</button>
                                 </a>
                             </div>
                             <div class="table-responsive">
@@ -200,20 +200,14 @@
                                     <thead>
                                         <tr style="color: #EB1616; ">
                                             <th scope="col">#</th>
-                                            <th scope="col">Image</th>
-                                            <th scope="col">Tour Name</th>
-                                            <th scope="col">Ngày khởi hành</th>
-                                            <th scope="col">Ngày kết thúc</th>
-                                            <th scope="col">Số ngày</th>
-                                            <th scope="col">Số đêm</th>
-                                            <th scope="col">Số chỗ</th>
-                                            <th scope="col">Lịch trình</th>
-                                            <th scope="col">Thể loại</th>
-                                            <th style="min-width: 70px;" scope="col">Số chỗ đã đặt</th>
-                                            <th scope="col">Mô tả</th>
-                                            <th scope="col">Địa điểm khởi hành</th>
+                                            <th scope="col">Đi từ</th>
+                                            <th scope="col">Nơi đến</th>
+                                            <th scope="col">Thời gian</th>
+                                           
                                             <th scope="col">Giá</th>
-                                            <th scope="col">Yêu thích</th>
+                                            <th scope="col">Thời gian khởi hành</th>
+                                            <th scope="col">Thời gian kết thúc</th>
+                                            <th scope="col">Có phải vé 1 chiều</th>
                                             <th scope="col">Action</th>
 
 
@@ -221,55 +215,37 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% tours.forEach((tour,index)=>{ %>
+                                        <% trains.forEach((train,index)=>{ %>
                                             <tr>
                                                 <th>
                                                     <%= index+1 %>
                                                 </th>
+                                               
                                                 <td>
-                                                    <img src="<%= tour.images %>" alt="" height="100">
+                                                    <%= train.from %>
                                                 </td>
                                                 <td>
-                                                    <%= tour.tourName %>
+                                                    <%= train.to %>
                                                 </td>
                                                 <td>
-                                                    <%= tour.departureDay %>
+                                                    <%= train.time %>
+                                                </td>
+                                               
+                                                <td>
+                                                    <%= train.price %>
                                                 </td>
                                                 <td>
-                                                    <%= tour.endDate %>
+                                                    <%= train.departureTime %>
                                                 </td>
                                                 <td>
-                                                    <%= tour.numberOfDays %>
+                                                    <%= train.endTime %>
                                                 </td>
                                                 <td>
-                                                    <%= tour.numberOfNights %>
+                                                    <%= train.isOneWayTicket %>
                                                 </td>
+                                              
                                                 <td>
-                                                    <%= tour.numberOfReservations %>
-                                                </td>
-                                                <td>
-                                                    <%= tour.schedule %>
-                                                </td>
-                                                <td>
-                                                    <%= tour.typeOfTour %>
-                                                </td>
-                                                <td>
-                                                    <%= tour.numberOfSeatsBooked %>
-                                                </td>
-                                                <td style=" word-wrap: break-word; max-width: 200px;">
-                                                    <%= tour.describe %>
-                                                </td>
-                                                <td>
-                                                    <%= tour.departureLocation %>
-                                                </td>
-                                                <td>
-                                                    <%= tour.price %>
-                                                </td>
-                                                <td>
-                                                    <%= tour.favorites %>
-                                                </td>
-                                                <td>
-                                                    <a href="edittour/<%=tour._id%>">
+                                                    <a href="edittrain/<%=train._id%>">
                                                         <button type="button" class="btn btn-primary m-2"
                                                             style="width: 40px; height: 40px;">
                                                             <i class="fa fa-edit me-2"></i>
@@ -278,7 +254,7 @@
 
                                                     <button type="button" id="del" class="btn btn-primary m-2"
                                                         style="width: 40px; height: 40px;"
-                                                        onclick="confirmDelete( '<%= tour._id %>','<%= tour.images %>')">
+                                                        onclick="confirmDelete( '<%= train._id %>')">
                                                         <i class="fa fa-trash me-2"></i>
                                                     </button>
 
@@ -299,7 +275,7 @@
                     <div style="display: flex; justify-content: center;">
                         <% for(let i=1;i<=numberOfPages;i++){ %>
                             <div class="btn-group me-2" role="group" aria-label="First group">
-                                <a href="/tours?page=<%=i%> ">
+                                <a href="/trains?page=<%=i%> ">
                                     <button type="button"
                                         class="<%= i == page ? 'btn btn-primary' : 'btn btn-secondary' %> ">
                                         <%= i %>
@@ -318,7 +294,7 @@
 
             <!-- //=======================================script delete tour======================================= -->
             <script>
-                const deleteTour = async (id, urlImage) => {
+                const deleteTrain = async (id, urlImage) => {
                     try {
                         // urlImage la url firebase ảnh
                         //xu ly url de lay folder va filename
@@ -328,9 +304,9 @@
                             var fileName = path.split("%2F")[1]; // lay ra filename
 
                             // console.log(folder, fileName);
-                            var urlFirebase = `/tours/deleteonfirebase/${fileName}`;
+                            var urlFirebase = `/trains/deleteonfirebase/${fileName}`;
                         }
-                        const url = `/tours/delete/${id}`;
+                        const url = `/trains/delete/${id}`;
                         const option = {
                             method: "delete",
                         }
@@ -382,8 +358,8 @@
                         })
                     }
                 }
-                const confirmDelete = (id, urlImage) => {
-                    // console.log(id, urlImage);
+                const confirmDelete = (id,) => {
+                   
                     Swal.fire({
                         title: "Bạn có chắc chắn muốn xóa không?",
                         icon: "warning",
@@ -394,7 +370,7 @@
                         cancelButtonText: "Hủy",
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            deleteTour(id, urlImage);
+                            deleteTrain(id);
                         }
                     })
                 }

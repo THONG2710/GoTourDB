@@ -14,16 +14,22 @@ dotenv.config();
 const appRoute = require("./src/routes/app/indexRouter");
 const userRoute = require("./src/routes/app/usersRouter");
 const tourRoute = require("./src/routes/app/tourRouter");
+const hotelRoute = require("./src/routes/app/hotelRoute");
+const postRoute = require("./src/routes/app/postRoute");
 // dành cho cpnel
 const {
   signInRouter,
   usersRouter,
   hotelsRouter,
   toursRouter,
+  trainsRouter,
+  airlinesRouter,
 
 } = require("./src/routes/web/indexRouter");
-const { addtour } = require("./src/controllers/web/toursController");
+
 var app = express();
+
+
 
 // view engine setup
 app.set("views", path.join("./src", "views"));
@@ -63,13 +69,17 @@ mongoose
 
 // dành cho api
 app.use("/api/user", userRoute); // http://localhost:3000/user  
-app.use("/api/tour", tourRoute); // 
+app.use("/api/tour", tourRoute); // http://localhost:3000/api/tour
+app.use("/api/hotel", hotelRoute); // http://localhost:3000/api/hotel
+app.use("/api/post", postRoute);  // http://localhost:3000/api/post
 // dành cho cpnel
 app.use(
   signInRouter, // http://localhost:3000/signin
   usersRouter, // http://localhost:3000/
   hotelsRouter, // http://localhost:3000/hotels
   toursRouter, // http://localhost:3000/tours
+  airlinesRouter, // http://localhost:3000/airlines
+  trainsRouter, // http://localhost:3000/destinations
 
 );
 

@@ -70,11 +70,11 @@
                 <div class="navbar-nav w-100">
 
 
-                    <a href="/" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Người dùng</a>
+                    <a href="/" class="nav-item nav-link "><i class="fa fa-user me-2"></i>Người dùng</a>
                     <a href="hotels" class="nav-item nav-link "><i class="fa fa-hotel me-2"></i>Khách sạn</a>
                     <a href="tours" class="nav-item nav-link active"><i class="fa fa-route me-2"></i>Chuyến đi</a>
-                    <a href="" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Tables</a>
+                    <a href="/airlines" class="nav-item nav-link "><i class="fa fa-plane me-2"></i>Chuyến bay</a>
+                    <a href="/trains" class="nav-item nav-link "><i class="fa fa-train me-2"></i>Chuyến tàu</a>
 
 
 
@@ -309,6 +309,7 @@
             const addTour = async () => {
                 // e.preventDefault();
                 var formData = new FormData(document.getElementById('form'));
+                 console.log(formData);
                 try {
 
                     const url = "/addtour";

@@ -6,6 +6,8 @@ const bookTourSchema = new Schema({
     _id: { type: ObjectId },
     date: { type: String },
     user: { type: String },
+    tour: { type: String },
+    numberOfReservations: { type: Array },
     totalAmout: { type: Number },
 });
 

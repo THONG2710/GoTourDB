@@ -70,11 +70,11 @@
                 <div class="navbar-nav w-100">
 
 
-                    <a href="/" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Người dùng</a>
-                    <a href="/hotels" class="nav-item nav-link active"><i class="fa fa-hotel me-2"></i>Khách sạn</a>
+                    <a href="/" class="nav-item nav-link "><i class="fa fa-user me-2"></i>Người dùng</a>
+                    <a href="/hotels" class="nav-item nav-link "><i class="fa fa-hotel me-2"></i>Khách sạn</a>
                     <a href="/tours" class="nav-item nav-link "><i class="fa fa-route me-2"></i>Chuyến đi</a>
-                    <a href="" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="" class="nav-item nav-link "><i class="fa fa-table me-2"></i>Tables</a>
+                    <a href="/airlines" class="nav-item nav-link  "><i class="fa fa-plane me-2"></i>Tables</a>
+                    <a href="/trains" class="nav-item nav-link active "><i class="fa fa-train me-2"></i>Tables</a>
 
 
 
@@ -190,50 +190,51 @@
             <div class="row g-4">
                 <div class="col-sm-12 col-xl-12">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">Chỉnh sửa khách sạn</h6>
+                        <h6 class="mb-4">Chỉnh sửa chuyến tàu</h6>
                         <form method="post" enctype="multipart/form-data" id="form"
                             style="display: flex; flex-direction: row; flex-wrap: wrap;">
                             <div class="m-3 me-5 col-sm-5">
-                                <label for="exampleInputEmail1" class="form-label">Tên Hotel</label>
-                                <input type="text" class="form-control" id="" name="hotelName"
-                                    value="<%= hotel.hotelName %>">
+                                <label for="exampleInputPassword1" class="form-label">Đi từ</label>
+                                <input type="text" class="form-control" id="" name="from" value="<%= train.from %>">
                             </div>
                             <div class="m-3 me-5 col-sm-5">
-                                <label for="exampleInputPassword1" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="" name="address"
-                                    value="<%= hotel.address %>">
-                            </div>
-                            <div class="m-3 me-5 col-sm-5">
-                                <label for="exampleInputPassword1" class="form-label">Sao</label>
-                                <input type="text" class="form-control" id="" name="star"
-                                    value="<%= hotel.star %>">
+                                <label for="exampleInputPassword1" class="form-label">Nơi đến</label>
+                                <input type="text" class="form-control" id="" name="to" value="<%= train.to %>"/>
                             </div>
 
                             <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Thời gian</label>
+                                <input type="text" class="form-control" id="" name="time" value="<%= train.time %>"/>
+                            </div>
+                          
+                            <div class="m-3 me-5 col-sm-5">
+                                
                                 <label for="exampleInputPassword1" class="form-label">Giá</label>
-                                <input type="number" class="form-control" id="" name="price"
-                                    value="<%= hotel.price %>">
+                                <input type="number" class="form-control" id="" name="price" value="<%= train.price %>"/>
+                            </div>
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Thời gian khởi hành</label>
+                                <input type="text" class="form-control" id="" name="departureTime" value="<%= train.departureTime %>"/>
+                            </div>
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Thời gian kết thúc</label>
+                                <input type="text" class="form-control" id="" name="endTime" value="<%= train.endTime %>" />
                             </div>
                            
-                            
-                            <div class="m-3 me-5 col-sm-5">
-                                <label for="formFile" class="form-label">Ảnh</label>
-                                <input class="form-control bg-dark" type="file" id="formFile"
-                                    accept="image/png, image/gif, image/jpeg" name="images"
-                                    onchange="checkImage(event)" value="<%= hotel.images %> ">
 
+                            <div class="m-3 me-5 col-sm-5">
+                                <label for="exampleInputPassword1" class="form-label">Có phải vé 1 chiều</label>
+                                <input type="text" class="form-control" id="" name="isOneWayTicket" value="<%= train.isOneWayTicket %>"/>
                             </div>
+                            
 
                             <div class="m-3 me-5 col-sm-5 mt-5"
                                 style="display: flex; align-items: center; justify-content: center;">
 
-                                <button type="button" class="btn btn-primary w-10 h-10" onclick="confirmEditHotel()">Xác
+                                <button type="button" class="btn btn-primary w-10 h-10" onclick="confirmEditTrain()">Xác
                                     nhận</button>
                             </div>
-                            <div class="m-3 me-5 col-sm-5 ">
-
-                                <img id="img" src="<%= hotel.images %>" style="height: 200px;">
-                            </div>
+                          
 
 
                         </form>
@@ -244,45 +245,21 @@
         </div>
         <!-- Form End -->
         <script>
-            const checkImage = (event) => {
+          
 
-                const file = event.target.files[0];
-                // console.log(file);
-                const fileName = file.name;
-                const fileExtension = fileName.split('.').pop().toLowerCase();
-
-                if (fileExtension === 'png' || fileExtension === 'jpg' || fileExtension === 'jpeg') {
-                    // console.log("Đây là một tệp tin hình ảnh (PNG hoặc JPEG).");
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const img = document.getElementById("img");
-                        img.src = e.target.result;
-                    }
-                    reader.readAsDataURL(file);
-                } else {
-                    // console.log("Tệp tin không phải là hình ảnh (PNG hoặc JPEG).");
-                    Swal.fire({
-                        title: "Chỉ hổ trợ file ảnh (PNG hoặc JPEG)",
-                        icon: "warning",
-
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            document.getElementById("formFile").value = "";
-                            document.getElementById("img").src = "";
-                        }
-                    })
-                        ;
-                }
-            }
-
-            const confirmEditHotel = async () => {
+            const confirmEditTrain = async () => {
                 var formData = new FormData(document.getElementById('form'));
+                let urlEncoded = new URLSearchParams(formData).toString();
+
                 try {
 
-                    const url = "/edithotel/<%= hotel.id %>";
+                    const url = "/edittrain/<%=train.id%>";
                     const option = {
                         method: "POST",
-                        body: formData
+                        body: urlEncoded,
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
                     }
                     Swal.fire({
                         title: "Đang sửa",
@@ -292,7 +269,7 @@
                         },
 
                     })
-
+                    // console.log(option, url);
                     const res = await fetch(url, option).then(res => res.json());
                     // console.log(res);
                     if (res) {
@@ -302,7 +279,7 @@
                             confirmButtonText: "OK",
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = "/hotels";
+                                window.location.href = "/trains";
                             }
                         })
 
