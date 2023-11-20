@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../../controllers/app/userController");
 
-// http://localhost:3000/user/login
+// http://localhost:3000/api/user/login
 router.post("/login", async (req, res, next) => {
   try {
     const {email, password} = req.body;
