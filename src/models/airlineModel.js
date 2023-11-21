@@ -8,11 +8,10 @@ const airlineSchema = new Schema({
     to: { type: String },
     time: { type: String },
     airlineCompany: { type: String },
-    price: { type: String },
+    price: { type: Number },
     departureTime: { type: String },
     endTime: { type: String},
-    isOneWayTicket: { type: String },
-    
+    isOneWayTicket: { type: Boolean },
 });
 
 module.exports = mongoose.model('airline', airlineSchema);

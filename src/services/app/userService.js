@@ -1,6 +1,7 @@
 const userModel = require("../../models/userModel");
 const bookTour = require('../../models/bookTourModel');
 const bookTourModel = require("../../models/bookTourModel");
+const postModel = require("../../models/postModel");
 
 // đăng nhập vào app
 const loginApp = async (email, password) => {
@@ -59,4 +60,16 @@ const getUserById = async (id) => {
     }
 }
 
-module.exports = {loginApp, signUp, getTourByUser, getUserById}
+// lấy bài đăng theo người dùng
+const getPostByIdUser = async (id) => {
+    try {
+        const post = await postModel.find({user: id});
+        if (post.length > 0) {
+            return post;
+        }
+        return null;
+    } catch (error) {
+        console.log('get post by id user error: ' + error);
+    }
+}
+module.exports = {loginApp, signUp, getTourByUser, getUserById, getPostByIdUser}

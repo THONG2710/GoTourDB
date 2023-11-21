@@ -54,8 +54,23 @@ router.get('/getUserById', async (req, res, next) => {
     }
     return res.status(404).json({result: false, user: null});
   } catch (error) {
-    return res.status(500).json({result: false, user: null})
+    return res.status(500).json({result: false, user: null});
+  }
+});
+
+// http://localhost:3000/api/user/getPostByIdUser?id=
+router.get('/getPostByIdUser', async (req, res, next) => {
+  try {
+    const {id} = req.query;
+    const posts = await userController.getPostByIdUserController(id);
+    if (posts.length > 0) {
+      return res.status(200).json({result: true, posts: posts});
+    }
+    return res.status(404).json({result: false, posts: null});
+  } catch (error) {
+    return res.status(500).json({result: false, posts: null});
   }
 });
 
 module.exports = router;
+  

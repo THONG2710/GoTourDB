@@ -32,4 +32,12 @@ const getUserByIdController = async (id) => {
   }
 }
 
-module.exports = { login, SignUp, getTourByUser, getUserByIdController };
+const getPostByIdUserController = async (id) => {
+  try {
+    return await UserService.getPostByIdUser(id);
+  } catch (error) {
+    console.log('get post by user controller error: ' + error);
+  }
+};
+
+module.exports = { login, SignUp, getTourByUser, getUserByIdController, getPostByIdUserController };
